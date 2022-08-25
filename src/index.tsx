@@ -1,6 +1,10 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
+import 'react-loading-skeleton/dist/skeleton.css';
+import { store } from './redux/store';
+import './index.css';
+
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
@@ -9,9 +13,9 @@ const root = createRoot(container);
 
 root.render(
 	<React.StrictMode>
-		{/* <Provider > */}
+		<Provider store={store}>
 			<App />
-		{/* </Provider> */}
+		</Provider>
 	</React.StrictMode>
 );
 
