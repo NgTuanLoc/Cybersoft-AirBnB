@@ -24,6 +24,7 @@ const Login = () => {
 		handleSubmit,
 		formState: { errors },
 	} = useForm<FormInputs>({ mode: 'onChange' });
+
 	const onLoginHandler = (user: FormInputs) => {
 		dispatch(loginThunk(user));
 	};

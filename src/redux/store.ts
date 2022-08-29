@@ -1,8 +1,12 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import authReducer from './features/Auth/AuthSlice';
+import locationReducer from './features/Location/LocationSlice';
+import roomReducer from './features/Room/RoomSlice';
 
 export const store = configureStore({
 	reducer: {
+		room: roomReducer,
+		location: locationReducer,
 		auth: authReducer,
 	},
 });

@@ -1,5 +1,9 @@
 import { SkeletonTheme } from 'react-loading-skeleton';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from './redux/hooks/hooks';
+
+import { getLocationList } from './redux/features/Location/LocationThunk';
 import {
 	Admin,
 	Auth,
@@ -13,6 +17,10 @@ import {
 } from './pages';
 
 function App() {
+	const dispatch = useAppDispatch();
+	useEffect(() => {
+		dispatch(getLocationList());
+	}, []);
 	return (
 		<SkeletonTheme
 			width={`100%`}
@@ -27,9 +35,14 @@ function App() {
 					<Route path='/auth' element={<Auth />} />
 					<Route path='/login' element={<Login />} />
 					<Route path='/register' element={<Resgister />} />
-					<Route path='/roomDetail' element={<RoomDetail />} />
-					<Route path='/roomList' element={<RoomList />} />
+					<Route path='/roomDetail/:id' element={<RoomDetail />} />
+					<Route path='/roomList/:locationId' element={<RoomList />} />
 					<Route path='/user' element={<User />} />
+
+					<Route
+						path='/user-not-found'
+						element={<NotFound error='User not existed' />}
+					/>
 
 					<Route
 						path='*'

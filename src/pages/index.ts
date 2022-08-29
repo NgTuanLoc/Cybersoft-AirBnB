@@ -3,7 +3,7 @@ import Auth from './Auth/Auth';
 import Home from './Home/Home';
 import Login from './Login/Login';
 import NotFound from './NotFound/NotFound';
-import Resgister from './Resgister/Resgister';
+import Resgister from './Register/Register';
 import RoomDetail from './RoomDetail/RoomDetail';
 import RoomList from './RoomList/RoomList';
 import User from './User/User';

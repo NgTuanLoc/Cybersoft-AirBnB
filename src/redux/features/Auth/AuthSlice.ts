@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IAuth } from '../../../@types/Auth';
-import { loginThunk } from './AuthThunk';
+import { loginThunk, registerThunk } from './AuthThunk';
 
 export interface IAuthState {
 	isLoading: boolean;
@@ -21,7 +21,14 @@ const initialState: IAuthState = {
 const authSlice = createSlice({
 	name: 'auth',
 	initialState,
-	reducers: {},
+	reducers: {
+		logout: (state: IAuthState) => {
+			state.isAuthenticated = false;
+			state.userType = '';
+			state.auth = null;
+			localStorage.removeItem('userLogin');
+		},
+	},
 	extraReducers(builder) {
 		builder.addCase(loginThunk.pending, (state) => {
 			state.isLoading = true;
@@ -40,6 +47,25 @@ const authSlice = createSlice({
 				state.error = payload as string;
 			}
 		});
+
+		builder.addCase(registerThunk.pending, (state) => {
+			state.isLoading = true;
+		});
+		builder.addCase(registerThunk.fulfilled, (state, { payload }) => {
+			state.isLoading = false;
+			state.isAuthenticated = true;
+			state.auth = payload;
+			state.error = '';
+		});
+		builder.addCase(registerThunk.rejected, (state, { payload }) => {
+			state.isLoading = false;
+			if (payload) {
+				state.isAuthenticated = false;
+				state.error = payload as string;
+			}
+		});
 	},
 });
+
+export const { logout } = authSlice.actions;
 export default authSlice.reducer;

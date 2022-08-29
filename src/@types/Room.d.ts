@@ -1,3 +1,5 @@
+import { ILocation } from './Location';
+
 export interface IRoom {
 	deleteAt: boolean;
 	_id: string;
@@ -15,5 +17,6 @@ export interface IRoom {
 	heating: boolean;
 	cableTV: boolean;
 	__v: number;
+	locationId: ILocation;
 	image: string;
 }

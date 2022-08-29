@@ -13,14 +13,15 @@ export const Container = styled.main`
 		background-clip: text;
 		-webkit-text-fill-color: transparent;
 		height: 4rem;
+		margin-bottom: -2rem;
 	}
 
 	.login__image {
 		height: 100vh;
 	}
-	
+
 	.login__form {
-		height: 100vh;
+		height: 105vh;
 		position: relative;
 
 		.back-btn {
@@ -46,6 +47,8 @@ export const Container = styled.main`
 			p {
 				color: #b3b3b3;
 				margin: 2rem 0;
+				font-size: 1.5rem;
+				text-align: center;
 			}
 
 			.login__input {
@@ -57,12 +60,15 @@ export const Container = styled.main`
 				align-items: flex-start;
 				flex-direction: column;
 				border: 1px solid #b3b3b3;
-				padding: 1.5rem;
+				padding: 1rem;
 				height: auto;
+				h5 {
+					font-size: 1rem;
+				}
 
 				label {
-					font-size: 1.2rem;
-					font-weight: 200;
+					font-size: 1.3rem;
+					font-weight: 800;
 					color: var(--clr-paragraph);
 				}
 
@@ -70,7 +76,7 @@ export const Container = styled.main`
 					border: transparent;
 					background-color: transparent;
 					width: 100%;
-					font-size: 2rem;
+					font-size: 1.2rem;
 					:focus {
 						background-color: transparent;
 						border: transparent;
@@ -94,6 +100,8 @@ export const Container = styled.main`
 	}
 
 	@media only screen and (max-width: 992px) {
+		height: 100%;
+		overflow: none;
 		display: flex;
 		flex-direction: column;
 		.login__form {

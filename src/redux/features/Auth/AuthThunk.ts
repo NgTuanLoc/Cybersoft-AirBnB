@@ -36,4 +36,78 @@ const loginThunk = createAsyncThunk<
 	}
 });
 
-export { loginThunk };
+export interface IRegister {
+	name: string;
+	email: string;
+	password: string;
+	phone: string;
+	birthday: string;
+	gender: boolean;
+	address: string;
+}
+
+// const registerThunk = createAsyncThunk<IAuth, IRegister>(
+// 	'auth/register',
+// 	async (user, thunkAPI) => {
+// 		try {
+// 			const params = {
+// 				method: 'POST',
+// 				url: `${URL}/register`,
+// 				data: {
+// 					name: user.name,
+// 					email: user.email,
+// 					password: user.password,
+// 					phone: user.phone,
+// 					birthday: user.birthday,
+// 					gender: user.gender,
+// 					address: user.address,
+// 				},
+// 			};
+
+// 			const reponse = await axiosInstance(params);
+// 			thunkAPI.dispatch(
+// 				loginThunk({
+// 					email: user.email,
+// 					password: user.password,
+// 				})
+// 			);
+// 			return reponse.data;
+// 		} catch (error: any) {
+// 			return thunkAPI.rejectWithValue(error.reponse.data.message);
+// 		}
+// 	}
+// );
+
+const registerThunk = createAsyncThunk<IAuth, IRegister>(
+	'auth/register',
+	async (user, thunkAPI) => {
+		try {
+			const params = {
+				method: 'POST',
+				url: `${URL}/register`,
+				data: {
+					name: user.name,
+					email: user.email,
+					password: user.password,
+					phone: user.phone,
+					birthday: user.birthday,
+					gender: user.gender,
+					address: user.address,
+				},
+			};
+
+			const response = await axiosInstance.request(params);
+			thunkAPI.dispatch(
+				loginThunk({
+					email: user.email,
+					password: user.password,
+				})
+			);
+			return response.data;
+		} catch (error: any) {
+			return thunkAPI.rejectWithValue(error.response.data.message);
+		}
+	}
+);
+
+export { loginThunk, registerThunk };
